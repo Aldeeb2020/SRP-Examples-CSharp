@@ -1,11 +1,12 @@
-public class OrderProcessor
+public class FileManager
 {
-    public void ProcessOrder(int orderId)
+    public void SaveFile(string path)
     {
-        // Process order
-        Console.WriteLine($"Processing order {orderId}.");
-        
-        // Log order
-        Console.WriteLine($"Logging order {orderId} to file.");
+        Console.WriteLine($"Saving file to {path}.");
+    }
+
+    public void CompressFile(string path)
+    {
+        Console.WriteLine($"Compressing file at {path}.");
     }
 }

@@ -1,16 +1,29 @@
+// هذا الكلاس مسؤول عن أكثر من شيء (خرق SRP)
 public class ProductCatalog
 {
-    public List<string> Products { get; set; } = new List<string>();
+    private List<Product> products = new List<Product>();
 
-    public void AddProduct(string product)
+    public void AddProduct(Product product)
     {
-        Products.Add(product);
-        Console.WriteLine($"Added {product}.");
+        products.Add(product);
     }
 
-    public string SearchProduct(string query)
+    public void RemoveProduct(Product product)
     {
-        Console.WriteLine($"Searching for {query}.");
-        return Products.FirstOrDefault(p => p.Contains(query));
+        products.Remove(product);
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        return products;
+    }
+
+    // هذه وظيفة مختلفة: تنسيق وطباعة
+    public void PrintProducts()
+    {
+        foreach (var product in products)
+        {
+            Console.WriteLine($"Name: {product.Name}, Price: {product.Price}");
+        }
     }
 }

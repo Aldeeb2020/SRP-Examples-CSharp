@@ -1,19 +1,34 @@
+// مسؤول فقط عن إدارة الكتالوج: إضافة وحذف المنتجات
 public class ProductCatalog
 {
-    public List<string> Products { get; set; } = new List<string>();
+    private List<Product> products = new List<Product>();
 
-    public void AddProduct(string product)
+    public void AddProduct(Product product)
     {
-        Products.Add(product);
-        Console.WriteLine($"Added {product}.");
+        products.Add(product);
+    }
+
+    public void RemoveProduct(Product product)
+    {
+        products.Remove(product);
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        return products;
     }
 }
 
-public class SearchService
+// كلاس منفصل لتنسيق طباعة المنتجات (مسؤولية مختلفة)
+public class ProductPrinter
 {
-    public string SearchProduct(ProductCatalog catalog, string query)
+    public void PrintProducts(List<Product> products)
     {
-        Console.WriteLine($"Searching for {query}.");
-        return catalog.Products.FirstOrDefault(p => p.Contains(query));
+        foreach (var product in products)
+        {
+            Console.WriteLine($"Name: {product.Name}, Price: {product.Price}");
+        }
     }
+}
+
 }
